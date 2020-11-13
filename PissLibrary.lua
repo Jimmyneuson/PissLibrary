@@ -2,12 +2,18 @@ math.randomseed(os.time())
 local random = math.random
 local floor = math.floor
 
+local function crash()
+  while "sending hitmen" do end
+end
+
 local PissLibrary = {}
 PissLibrary.__index = PissLibrary
 
 local OUT_OF_PISS = "Piss is no more."
 local NEED_TO_PISS = "NEED TO PISS"
 local STUPID_USER = "NO SHIT ONLY PISS"
+local NOT_ENOUGH = "NOT ENOUGH PISS"
+local INVALID_PISS = "INVALID URINE TYPE"
 
 local URINE_TYPES = {
   "Clear",
@@ -32,14 +38,27 @@ function PissLibrary.RandomUrineType()
   return URINE_TYPES[random(1, #URINE_TYPES)]
 end
 
+local function isValidUrineType(urineType)
+  for _, urineItem in ipairs(PissLibrary.GetUrineTypes()) do
+    if urineItem == urineType then
+      return true
+    end
+  end
+  return false
+end
+
 function PissLibrary:Piss(urineType)
   assert(self._PISS_LEFT > 0, OUT_OF_PISS)
+  assert(isValidUrineType(urineType), INVALID_PISS)
 
   print(string.format("%sING...\n%s IS %s", self._PISS_CONSTANT, self._PISS_CONSTANT, urineType))
   self._PISS_LEFT = self._PISS_LEFT - 1
 end
 
 function PissLibrary:MultiPiss(amount, urineType)
+  assert(not (amount <= 0), NOT_ENOUGH)
+  assert(isValidUrineType(urineType), INVALID_PISS)
+
   local enoughPiss = ( self._PISS_LEFT >= amount )
   urineType = urineType or self:RandomUrineType()
 
@@ -63,12 +82,8 @@ function PissLibrary:Rest()
   end
 end
 
-local function crash()
-  while "sending hitmen" do end
-end
-
 function PissLibrary:Shit()
-  if random(2^62) == floor((2^62)/3) then
+  if random(2^62) == floor((2^62)/random(10)) then
     local SHIT_CONSTANT = "SHIT"
     print(string.format("%sTING??1!!?", SHIT_CONSTANT))
     crash()
