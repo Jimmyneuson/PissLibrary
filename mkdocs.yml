@@ -1,0 +1,17 @@
+site_name: PissLibrary 
+site_description: Documentation for PissLibrary 
+site_author: Anh Luong
+
+theme:
+  name: material
+  palette:
+    primary: blue
+    accent: blue
+
+nav:
+  - Home: index.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      linenums: true
+  - pymdownx.superfences
