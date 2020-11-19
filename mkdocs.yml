@@ -16,3 +16,5 @@ markdown_extensions:
       linenums: true
   - pymdownx.superfences
   - pymdownx.tilde
+  - toc:
+      permalink: true
