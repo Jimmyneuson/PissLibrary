@@ -30,3 +30,4 @@ person:MultiPiss(50, urineType)
 --wait a minute...
 person:Shit()
 ```
+For the whole documentation visit the [documentation website](https://jimmyneuson.github.io/PissLibrary/)
