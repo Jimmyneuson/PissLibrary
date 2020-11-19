@@ -1,0 +1,30 @@
+site_name: PissLibrary 
+site_description: Documentation for PissLibrary 
+site_author: Anh Luong
+site_url: https://jimmyneuson.github.io/PissLibrary/
+
+theme:
+  logo: "img/piss.png"
+  favicon: "img/piss.png"
+  name: material
+  palette:
+    primary: blue
+    accent: blue
+
+nav:
+  - Home: index.md
+  - Api Documentation: api.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/Jimmyneuson
+
+markdown_extensions:
+  - pymdownx.highlight:
+      linenums: true
+  - pymdownx.superfences
+  - pymdownx.tilde
+  - toc:
+      permalink: true
+  - admonition
