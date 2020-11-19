@@ -60,7 +60,7 @@ person:Piss(urineType)
 ```
 
 ### MultiPiss
-`void` `Person:MultiPiss(Int amount, [, String urineType])` This is the same as `Person:Piss()` but it does it multiple times. It will go until there is no piss left or the amount is reached. This also optionally takes a urineType, otherwise it will be random.
+`void` `Person:MultiPiss(Int amount [, String urineType])` This is the same as `Person:Piss()` but it does it multiple times. It will go until there is no piss left or the amount is reached. This also optionally takes a urineType, otherwise it will be random.
 ```lua
 local PissLibrary = require("PissLibrary")
 
