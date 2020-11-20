@@ -7,7 +7,10 @@ local function crash()
 end
 
 local PissLibrary = {}
-PissLibrary.__index = PissLibrary
+
+local PissLibraryObject = {}
+PissLibraryObject.__index = PissLibraryObject
+PissLibraryObject.__type = "person"
 
 local OUT_OF_PISS = "Piss is no more."
 local NEED_TO_PISS = "NEED TO PISS"
@@ -27,7 +30,7 @@ function PissLibrary.new()
   return setmetatable({
     _PISS_CONSTANT = "Piss",
     _PISS_LEFT = 100
-  }, PissLibrary)
+  }, PissLibraryObject)
 end
 
 function PissLibrary.GetUrineTypes()
@@ -47,7 +50,7 @@ local function isValidUrineType(urineType)
   return false
 end
 
-function PissLibrary:Piss(urineType)
+function PissLibraryObject:Piss(urineType)
   assert(self._PISS_LEFT > 0, OUT_OF_PISS)
   assert(isValidUrineType(urineType), INVALID_PISS)
 
@@ -55,7 +58,7 @@ function PissLibrary:Piss(urineType)
   self._PISS_LEFT = self._PISS_LEFT - 1
 end
 
-function PissLibrary:MultiPiss(amount, urineType)
+function PissLibraryObject:MultiPiss(amount, urineType)
   assert(not (amount <= 0), NOT_ENOUGH)
   assert(isValidUrineType(urineType), INVALID_PISS)
 
@@ -74,7 +77,7 @@ function PissLibrary:MultiPiss(amount, urineType)
   end
 end
 
-function PissLibrary:Rest()
+function PissLibraryObject:Rest()
   if random() >= 0.5 then
     print(NEED_TO_PISS) 
   else
@@ -82,7 +85,7 @@ function PissLibrary:Rest()
   end
 end
 
-function PissLibrary:Shit()
+function PissLibraryObject:Shit()
   if random(2^62) == floor((2^62)/random(10)) then
     local SHIT_CONSTANT = "SHIT"
     print(string.format("%sTING??1!!?", SHIT_CONSTANT))
