@@ -1,6 +1,8 @@
 math.randomseed(os.time())
+
 local random = math.random
 local floor = math.floor
+local insert = table.insert
 
 local function crash()
   while "sending hitmen" do end
@@ -36,6 +38,12 @@ function PissLibrary.GetUrineTypes()
   return URINE_TYPES
 end
 
+function PissLibrary.AddUrineType(newUrineType)
+  assert(type(newUrineType) == "string", INVALID_PISS)
+
+  insert(URINE_TYPES, newUrineType)
+end
+
 function PissLibrary.RandomUrineType()
   return URINE_TYPES[random(1, #URINE_TYPES)]
 end
@@ -69,6 +77,7 @@ function PissLibraryObject:MultiPiss(amount, urineType)
 
   for _ = 1, amount do
     self._PISS_LEFT = self._PISS_LEFT - 1
+
     if self._PISS_LEFT < 1 then
       error(OUT_OF_PISS)
     else

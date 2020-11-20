@@ -34,6 +34,18 @@ for _, urineType in ipairs(urineTypes) do
 end
 ```
 
+### AddUrineType
+`void` `PissLibrary.AddUrineType(String newUrineType)` adds a new urine type to `PissLibrary.GetUrineTypes()`.
+```lua
+local PissLibrary = require("PissLibrary")
+
+PissLibrary.AddUrineType("White")
+
+local urineTypes = PissLibrary.GetUrineTypes()
+print(urineTypes[#urineTypes]) 
+-- White
+```
+
 ### RandomUrineType
 `String` `PissLibrary.RandomUrineType()` returns a randomly selected urine type from `PissLibrary.RandomUrineType()`. This example randomly prints two urine types.
 ```lua
