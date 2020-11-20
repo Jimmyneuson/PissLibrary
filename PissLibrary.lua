@@ -10,7 +10,6 @@ local PissLibrary = {}
 
 local PissLibraryObject = {}
 PissLibraryObject.__index = PissLibraryObject
-PissLibraryObject.__type = "person"
 
 local OUT_OF_PISS = "Piss is no more."
 local NEED_TO_PISS = "NEED TO PISS"
@@ -59,6 +58,7 @@ function PissLibraryObject:Piss(urineType)
 end
 
 function PissLibraryObject:MultiPiss(amount, urineType)
+  assert(type(amount) ==  "number", "Amount must be a number")
   assert(not (amount <= 0), NOT_ENOUGH)
   assert(isValidUrineType(urineType), INVALID_PISS)
 
