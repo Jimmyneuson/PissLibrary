@@ -1,4 +1,5 @@
-local Lest = require("./Lest")
+package.path = package.path..";../?.lua"
+local Lest = require("Lest")
 
 local units = {
   "errorHandling",
