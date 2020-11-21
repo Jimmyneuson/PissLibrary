@@ -13,6 +13,7 @@ jobs:
       - name: Run tests
         run: lua testing/testRunner.lua
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
