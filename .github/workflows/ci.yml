@@ -4,12 +4,23 @@ on:
     branches:
       - master
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Lua
+        uses: leafo/gh-actions-lua@v8.0.0
+      - name: Run tests
+        run: lua testing/testRunner.lua
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          python-version: 3.x
-      - run: pip install mkdocs-material
-      - run: mkdocs gh-deploy --force
+            python-version: 3.x
+      - name: Install Mkdocs
+        run: pip install mkdocs-material
+      - name: Deploy Mkdocs
+        run: mkdocs gh-deploy --force

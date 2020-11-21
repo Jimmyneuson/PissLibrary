@@ -66,12 +66,13 @@ function PissLibraryObject:Piss(urineType)
 end
 
 function PissLibraryObject:MultiPiss(amount, urineType)
+  urineType = urineType or PissLibrary.RandomUrineType()
+
   assert(type(amount) ==  "number", "Amount must be a number")
-  assert(not (amount <= 0), NOT_ENOUGH)
+  assert(amount >= 0, NOT_ENOUGH)
   assert(isValidUrineType(urineType), INVALID_PISS)
 
   local enoughPiss = ( self._PISS_LEFT >= amount )
-  urineType = urineType or self:RandomUrineType()
 
   assert(enoughPiss, OUT_OF_PISS)
 
