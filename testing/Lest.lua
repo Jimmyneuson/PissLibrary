@@ -1,4 +1,4 @@
--- Unit Testing Framework by Anh Luong
+-- Unit Testing Library by Anh Luong
 -- Not documented yet recommended to use another one like LuaUnit.
 
 local insert = table.insert
