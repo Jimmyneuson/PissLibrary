@@ -1,4 +1,4 @@
-local Lest = require("Lest")
+local Lest = require("./Lest")
 
 local units = {
   "errorHandling",
