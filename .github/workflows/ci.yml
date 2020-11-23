@@ -15,17 +15,3 @@ jobs:
       - name: Run tests
         run: lua ./testRunner.lua
         working-directory: ./testing
-
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.x
-      - name: Install Mkdocs
-        run: pip install mkdocs-material
-      - name: Deploy Mkdocs
-        run: mkdocs gh-deploy --force
