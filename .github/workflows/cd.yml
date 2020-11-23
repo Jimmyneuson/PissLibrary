@@ -1,0 +1,24 @@
+name: cd
+on:
+  pull_request:
+    types: [closed]
+    brances:
+      - master
+      - development
+
+jobs:
+ deploy:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+            python-version: 3.x
+      - name: Install Mkdocs
+        run: pip install mkdocs-material
+      - name: Deploy Mkdocs
+        if: github.event.pull_request.merged
+        run: mkdocs gh-deploy --force 
