@@ -9,25 +9,22 @@ You can support me and this library by pinging and thanking me in the roblox dis
 ## Example
 
 ```lua
---Get the library
-local PissLibrary = require("PissLibrary")
+package.path = package.path .. ';../?.lua' --stupid shitter path shit
+local PissLibrary = require ("PissLibrary")
 
---Create a person
-local person = PissLibrary.new()
+local person = PissLibrary.new() -- Create a new person
 
---Gets a random urine type
-local urineType = PissLibrary.RandomUrineType()
+PissLibrary.AddUrineType("White") -- Add a new urine type
+for _, urineType in ipairs(PissLibrary.GetUrineTypes()) do
+  print(urineType)
+end
 
---Make them piss once!
-person:Piss(urineType)
+person:Piss("White") -- Make them piss out with a urine type of White
 
---Take a little rest why dont ya?
-person:Rest()
+person:Rest() -- Let them rest
 
---Make them piss multiple times!
-person:MultiPiss(50, urineType)
+person:MultiPiss(20, "White") -- Make them piss 20 times with a urine type of White
 
---wait a minute...
-person:Shit()
+person:Shit() -- wait what
 ```
 For the whole documentation visit the [documentation website](https://jimmyneuson.github.io/PissLibrary/)
