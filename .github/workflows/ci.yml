@@ -12,6 +12,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Set up Lua
         uses: xpol/setup-lua@v0.2
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
         with:
           lua-version: "5.2.0"
       - name: Run tests
