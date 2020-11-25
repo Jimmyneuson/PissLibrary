@@ -7,7 +7,7 @@ local SUCCESS_CODE = 0
 local FAILED_CODE = -1
 
 local function clearOutput()
-  os.execute("reset")
+  os.execute("cls")
 end
 
 local Lest = {}
