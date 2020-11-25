@@ -7,7 +7,10 @@ local SUCCESS_CODE = 0
 local FAILED_CODE = -1
 
 local function clearOutput()
-  os.execute("clear")
+  print("\nClearing junk output from tests")
+  for _ = 1, 255 do
+    print()
+  end
 end
 
 local Lest = {}
