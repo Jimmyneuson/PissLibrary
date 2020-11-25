@@ -7,7 +7,7 @@ local SUCCESS_CODE = 0
 local FAILED_CODE = -1
 
 local function clearOutput()
-  io.write("\027[H\027[2J")
+  os.execute("reset")
 end
 
 local Lest = {}
