@@ -9,8 +9,7 @@ You can support me and this library by pinging and thanking me in the roblox dis
 ## Example
 
 ```lua
-package.path = package.path .. ';../?.lua' --stupid shitter path shit
-local PissLibrary = require ("PissLibrary")
+local PissLibrary = require("PissLibrary")
 
 local person = PissLibrary.new() -- Create a new person
 
