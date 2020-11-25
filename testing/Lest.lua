@@ -6,6 +6,10 @@ local insert = table.insert
 local SUCCESS_CODE = 0
 local FAILED_CODE = -1
 
+local function clearOutput()
+  io.write("\027[H\027[2J")
+end
+
 local Lest = {}
 Lest._categories = {}
 Lest._failed = {}
@@ -48,7 +52,7 @@ function Lest.Run()
     end
   end
 
-  os.execute("cls")
+  clearOutput()
 
   for categoryName, category in pairs(Lest._categories) do
     print(string.format("Testing category: %s", categoryName))
