@@ -1,32 +1,32 @@
 package.path = package.path..";../?.lua"
 local PissLibrary = require "PissLibrary"
 
-local returnValueTests = {}
+local functionalityTests = {}
 
-returnValueTests["should return table"] = function()
+functionalityTests["should return table"] = function()
   local person = PissLibrary.new()
   return (type(person) == "table")
 end
 
-returnValueTests["should have correct piss property new"] = function()
+functionalityTests["should have correct piss property new"] = function()
   local person = PissLibrary.new()
   return (person._PISS_CONSTANT == "Piss")
 end
 
-returnValueTests["should have correct piss left property new"] = function()
+functionalityTests["should have correct piss left property new"] = function()
   local person = PissLibrary.new()
   return (person._PISS_LEFT == 100)
 end
 
-returnValueTests["should return table GetUrineTypes"] = function()
+functionalityTests["should return table GetUrineTypes"] = function()
   return (type(PissLibrary.GetUrineTypes()) == "table")
 end
 
-returnValueTests["should return string RandomUrineType"] = function()
+functionalityTests["should return string RandomUrineType"] = function()
   return (type(PissLibrary.RandomUrineType()) == "string")
 end
 
-returnValueTests["should return valid urine type RandomUrineType"] = function()
+functionalityTests["should return valid urine type RandomUrineType"] = function()
   local randomUrineType = PissLibrary.RandomUrineType()
   for _, urineType in ipairs(PissLibrary.GetUrineTypes()) do
     if urineType == randomUrineType then
@@ -36,4 +36,4 @@ returnValueTests["should return valid urine type RandomUrineType"] = function()
   return false
 end
 
-return returnValueTests
+return functionalityTests
