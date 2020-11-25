@@ -6,6 +6,12 @@ local insert = table.insert
 local SUCCESS_CODE = 0
 local FAILED_CODE = -1
 
+local function clearOutput()
+  if not os.execute("clear") then
+    os.execute("cls")
+  end
+end
+
 local Lest = {}
 Lest._categories = {}
 Lest._failed = {}
@@ -15,7 +21,9 @@ Category.__index = Category
 
 function Lest.new(categoryName)
   local self = setmetatable({
-    _units = {}
+    _units = {};
+    _passedUnits = {};
+    _failedUnits = {}
   }, Category)
   Lest._categories[categoryName] = self
   return self
@@ -28,7 +36,7 @@ end
 function Lest.Run()
   local passed = true;
 
-  for categoryName, category in pairs(Lest._categories) do
+  for _, category in pairs(Lest._categories) do
     local passedUnits = {}
     local failedUnits = {}
 
@@ -36,19 +44,25 @@ function Lest.Run()
       local testPassed = unit()
       if testPassed then
         insert(passedUnits, unitName)
+        insert(category._passedUnits, unitName)
       else
         passed = false
         insert(Lest._failed, unitName)
         insert(failedUnits, unitName)
+        insert(category._failedUnits, unitName)
       end
     end
+  end
 
+  clearOutput()
+
+  for categoryName, category in pairs(Lest._categories) do
     print(string.format("Testing category: %s", categoryName))
-    for _, unitName in ipairs(passedUnits) do
+    for _, unitName in ipairs(category._passedUnits) do
       print(string.format("\tUnit Passed: %s", unitName))
     end
-    for _, unitName in ipairs(failedUnits) do
-      print(string.format("\tUnit Failed: %s", unitName))
+    for _, unitName in ipairs(category._failedUnits) do
+      print(string.format("\tUnit Passed: %s", unitName))
     end
     print()
   end
