@@ -2,7 +2,7 @@ local Lest = require("Lest")
 
 local units = {
   "errorHandling",
-  "returnValues"
+  "functionality"
 }
 
 for _, unitName in ipairs(units) do
