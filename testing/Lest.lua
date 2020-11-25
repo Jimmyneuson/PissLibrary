@@ -8,9 +8,8 @@ local FAILED_CODE = -1
 
 local function clearOutput()
   print("\nClearing junk output from tests")
-  for _ = 1, 255 do
-    print()
-  end
+  print("---------------------------------")
+  print("\n")
 end
 
 local Lest = {}
