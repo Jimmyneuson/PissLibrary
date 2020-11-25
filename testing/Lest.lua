@@ -7,48 +7,48 @@ local SUCCESS_CODE = 0
 local FAILED_CODE = -1
 
 local Lest = {}
-Lest._units = {}
+Lest._categories = {}
 Lest._failed = {}
 
-local Unit = {}
-Unit.__index = Unit
+local Category = {}
+Category.__index = Category
 
-function Lest.new(unitName)
+function Lest.new(categoryName)
   local self = setmetatable({
-    _tests = {}
-  }, Unit)
-  Lest._units[unitName] = self
+    _units = {}
+  }, Category)
+  Lest._categories[categoryName] = self
   return self
 end
 
-function Unit:it(should, test)
-  self._tests[should] = test
+function Category:it(should, unit)
+  self._units[should] = unit
 end
 
 function Lest.Run()
   local passed = true;
 
-  for unitName, unit in pairs(Lest._units) do
-    local passedTests = {}
-    local failedTests = {}
+  for categoryName, category in pairs(Lest._categories) do
+    local passedUnits = {}
+    local failedUnits = {}
 
-    for testName, test in pairs(unit._tests) do
-      local testPassed = test()
+    for unitName, unit in pairs(category._units) do
+      local testPassed = unit()
       if testPassed then
-        insert(passedTests, testName)
+        insert(passedUnits, unitName)
       else
         passed = false
-        insert(Lest._failed, testName)
-        insert(failedTests, testName)
+        insert(Lest._failed, unitName)
+        insert(failedUnits, unitName)
       end
     end
 
-    print(string.format("Testing unit: %s", unitName))
-    for _, testName in ipairs(passedTests) do
-      print(string.format("\tTest Passed: %s", testName))
+    print(string.format("Testing category: %s", categoryName))
+    for _, unitName in ipairs(passedUnits) do
+      print(string.format("\tUnit Passed: %s", unitName))
     end
-    for _, testName in ipairs(failedTests) do
-      print(string.format("\tTest Failed: %s", testName))
+    for _, unitName in ipairs(failedUnits) do
+      print(string.format("\tUnit Failed: %s", unitName))
     end
     print()
   end
@@ -58,7 +58,7 @@ function Lest.Run()
     return SUCCESS_CODE
   else
     print("One or more unit tests failed.")
-    print("Tests failed:")
+    print("Units failed:")
     for _, testName in ipairs(Lest._failed) do
       print("\t"..testName)
     end
